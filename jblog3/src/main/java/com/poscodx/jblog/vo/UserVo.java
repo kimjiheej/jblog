@@ -3,14 +3,15 @@ package com.poscodx.jblog.vo;
 public class UserVo {
 
 	
-	private Long id;
+	private String id;
 	private String name;
 	private String password;
 	private String join_date;
-	public Long getId() {
+	
+	public String getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -35,6 +36,7 @@ public class UserVo {
 	public String toString() {
 		return "UserVo [id=" + id + ", name=" + name + ", password=" + password + ", join_date=" + join_date + "]";
 	}
+	
 	
 	
 }

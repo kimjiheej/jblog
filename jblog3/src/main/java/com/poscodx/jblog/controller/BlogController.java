@@ -24,7 +24,7 @@ public class BlogController {
 		return "blog/admin-basic";
 	}
 
-	// @Auth
+//	@Auth
 	@RequestMapping("/admin/category")
 	public String adminCategory(@PathVariable("id") String id) {
 		
