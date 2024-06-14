@@ -6,7 +6,18 @@
     <insert id="insert" parameterType="uservo">
         <![CDATA[
         insert into user (id, name, password, join_date)
-        values (#{id}, #{name},  password(#{password }), current_date())
+        values (#{id }, #{name },  password(#{password }), current_date())
         ]]>
     </insert>
+    
+    <select id="findByIdAndPassword" parameterType="map" resultType="uservo">
+		<![CDATA[
+		select id, name, password
+		  from user
+		 where id = #{id }
+		   and password=password(#{password })
+		]]>
+	</select>
+	
+	
 </mapper>

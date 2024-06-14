@@ -3,15 +3,15 @@ package com.poscodx.jblog.vo;
 public class BlogVo {
 
 	
-	private Long id;
+	private String user_id;
 	private String title;
 	private String logo;
 	
-	public Long getId() {
-		return id;
+	public String getUser_id() {
+		return user_id;
 	}
-	public void setId(Long id) {
-		this.id = id;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
 	public String getTitle() {
 		return title;
@@ -27,8 +27,10 @@ public class BlogVo {
 	}
 	@Override
 	public String toString() {
-		return "BlogVo [id=" + id + ", title=" + title + ", logo=" + logo + "]";
+		return "BlogVo [user_id=" + user_id + ", title=" + title + ", logo=" + logo + "]";
 	}
+	
+	
 	
 	
 }

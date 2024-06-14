@@ -3,4 +3,10 @@
 
 <mapper namespace="category">
 
+<insert id="insert" parameterType="map">
+    <![CDATA[
+    insert into category 
+    values (null, #{name }, #{description }, current_date(), #{id })
+    ]]>
+</insert>
 </mapper>
