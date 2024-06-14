@@ -8,4 +8,13 @@
         values (#{id }, #{title }, #{logo })
         ]]>
     </insert>
+    
+    <select id="findByUserId" parameterType="string" resultType="blogvo">
+		<![CDATA[
+		select id, title, logo
+		  from blog
+		 where id = #{userId }
+		]]>
+	</select>
+	
 </mapper>

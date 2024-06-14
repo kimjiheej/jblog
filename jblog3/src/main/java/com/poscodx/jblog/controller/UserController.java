@@ -56,7 +56,7 @@ public class UserController {
 		    // 기본 미분류 카테고리도 하나 설정해주어야 한다 
 		    
 		    
-		   categoryService.insertCategory("name","description",id);
+		   categoryService.insertCategory("미분류","카테고리를 지정하지 않은 경우",id);
 		    
 	        return "redirect:/user/joinsuccess";
 	    }
