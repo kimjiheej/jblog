@@ -1,5 +1,6 @@
 package com.poscodx.jblog.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
@@ -28,8 +29,6 @@ public class BlogController {
 	@Autowired 
 	private CategoryService categoryService;
 	
-	
-	
        // 블로그 처음 접속 
 	   @RequestMapping({"", "/{categoryNo}", "/{categoryNo}/{postNo}" })
 	    public String index(
@@ -55,9 +54,6 @@ public class BlogController {
 		   BlogVo blog = blogService.getBlog(userId);
 	       model.addAttribute("blog",blog);
 		   
-	        
-
-	        
 	        return "blog/main";
 	    }
 	   
@@ -69,20 +65,20 @@ public class BlogController {
 
 	@Auth
 	@RequestMapping(value="/admin/category", method=RequestMethod.GET)
-	public String adminCategory(@PathVariable("id") String id) {
+	public String adminCategory(@PathVariable("id") String id, Model model) {
+		
+		List<CategoryVo> list = categoryService.getCategories(id);
+		model.addAttribute("list",list);
 		return "blog/admin-category";
+		
 	}
 	
-	@Auth 
-	@RequestMapping(value="/admin/category/register", method=RequestMethod.POST) 
-	public String categoryRegister(CategoryVo vo, @PathVariable("id") String id) {
-		 categoryService.insertCategory(vo.getName(), vo.getDescription(), id);
-		  return "redirect:/" + id + "/admin/category";
-	}
-	
-	
-	
-	
+	    @Auth
+	    @RequestMapping(value="/admin/category/register", method=RequestMethod.POST)
+	    public String categoryRegister(CategoryVo vo, @PathVariable("id") String id) {
+	        categoryService.insertCategory(vo.getName(), vo.getDescription(), id);
+	        return "redirect:/" + id + "/admin/category";
+	    }
 	
 	@Auth
 	@RequestMapping("/admin/write")

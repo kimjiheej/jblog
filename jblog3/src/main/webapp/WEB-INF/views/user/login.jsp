@@ -17,7 +17,7 @@
 		<li><a href="${pageContext.request.contextPath}/user/login">로그인</a></li>
 			<li><a href="${pageContext.request.contextPath}/user/join">회원가입</a></li>
 			<li><a href="${pageContext.request.contextPath}/user/logout">로그아웃</a></li>
-			<li><a href="${pageContext.request.contextPath}/${authUser.userId }">내블로그</a></li>
+			<li><a href="${pageContext.request.contextPath}/${authUser.id }">내블로그</a></li>
 		</ul>
 			<form class="Login-form" id="login-form" method="post" action="${pageContext.request.contextPath}/user/auth">
       		<label>아이디</label> <input type="text" name="id">

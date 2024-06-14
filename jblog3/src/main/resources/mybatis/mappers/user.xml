@@ -6,7 +6,7 @@
     <insert id="insert" parameterType="uservo">
         <![CDATA[
         insert into user (id, name, password, join_date)
-        values (#{id }, #{name },  password(#{password }), current_date())
+        values (#{id }, #{name },  password(#{password }), now())
         ]]>
     </insert>
     

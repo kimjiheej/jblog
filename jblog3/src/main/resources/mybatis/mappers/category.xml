@@ -9,4 +9,13 @@
     values (null, #{name }, #{description }, current_date(), #{id })
     ]]>
 </insert>
+
+  <select id="findAll" resultType="categoryvo" parameterType="string">
+		<![CDATA[	
+		  select no, name, description, date_format(reg_date, '%Y/%m/%d %H:%i:%s') as regDate, id
+		    from category 
+		    where id=#{id }
+		order by reg_date desc
+		]]>  
+	</select>
 </mapper>
