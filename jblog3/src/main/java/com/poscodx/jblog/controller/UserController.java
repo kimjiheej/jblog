@@ -34,7 +34,6 @@ public class UserController {
     private CategoryService categoryService;
 	
 	
-	
 	// 회원가입 할 수 있는 화면으로 전환하게 해주기 
 	@RequestMapping(value="/join", method=RequestMethod.GET)
 	public String join(UserVo vo) {

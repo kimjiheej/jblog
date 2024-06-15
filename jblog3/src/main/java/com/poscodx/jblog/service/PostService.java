@@ -47,8 +47,4 @@ public class PostService {
 	public PostVo getSmallPost(Optional<Long> categoryNo) {
 		return postRepository.getSmallPost(categoryNo);
 	}
-
-
-	
-	
 }

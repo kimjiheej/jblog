@@ -35,66 +35,9 @@ public class BlogController {
     private PostService postService;
     
     
-    /**
-     * 블로그 첫 페이지 접근
-     */
-    @RequestMapping({"", "/{categoryNo}", "/{categoryNo}/{postNo}" })
-    public String index(
-        @PathVariable("id") String id,
-        @PathVariable Optional<Long> categoryNo,
-        @PathVariable Optional<Long> postNo, 
-        HttpSession session, Model model
-    ) {
-        // 세션에서 유저 정보를 가져와서 블로그 정보를 조회
-        UserVo user = (UserVo) session.getAttribute("authUser");
-        if (user == null) {
-            // 유저가 없으면 로그인 페이지로 리다이렉트 등 처리
-            return "redirect:/login";
-        }
-
-        String userId = user.getId();
-        BlogVo blog = blogService.getBlog(userId);
-        model.addAttribute("blog", blog);
-
-        // 무조건 있어야 하는 카테고리 리스트
-        List<CategoryVo> list = categoryService.getCategories(id);
-        model.addAttribute("list", list);
-
-        if (categoryNo.isPresent() && postNo.isPresent()) {
-            // categoryNo와 postNo가 모두 있는 경우
-            Long categoryId = categoryNo.get();
-            Long postId = postNo.get();
-            PostVo post = postService.getPost(postId);
-            List<PostVo> postList = postService.getAllPosts(categoryId);
-
-            model.addAttribute("categoryNo", categoryId);
-            model.addAttribute("firstPage", post);
-            model.addAttribute("postList", postList);
-
-        } else if (categoryNo.isPresent()) {
-            // categoryNo만 있는 경우
-            Long categoryId = categoryNo.get();
-            List<PostVo> postList = postService.getAllPosts(categoryId);
-            PostVo post = postService.getSmallPost(categoryId);
-
-            model.addAttribute("categoryNo", categoryId);
-            model.addAttribute("firstPage", post);
-            model.addAttribute("postList", postList);
-
-        } else {
-            // 카테고리 번호가 없는 경우, 기본 미등록 카테고리를 사용
-            Long no = categoryService.getFirstCategory(id, "미등록");
-            List<PostVo> posts = postService.getAllPosts(no);
-            PostVo post = postService.getSmallPost(no);
-
-            model.addAttribute("categoryNo", no);
-            model.addAttribute("firstPage", post);
-            model.addAttribute("postList", posts);
-        }
-        return "blog/main";
-    }
+  
     
-     /*
+     
      
     @RequestMapping({"", "/{categoryNo}", "/{categoryNo}/{postNo}" })
     public String index(
@@ -165,7 +108,7 @@ public class BlogController {
         }
         return "blog/main";
     }
-        */
+        
     
     /**
      * 블로그 기본 설정 페이지 접근
