@@ -24,4 +24,14 @@
 		  delete from category where no=${categoryId }
 		]]>  
 	</delete>
+	
+
+	
+	  <select id="getFirstCategory" resultType="long" parameterType="map">
+		<![CDATA[	
+		   select no from category where id=#{id } and name=#{un }
+		]]>  
+	</select>
+	
+	
 </mapper>

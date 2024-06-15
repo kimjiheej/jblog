@@ -1,6 +1,7 @@
 package com.poscodx.jblog.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,4 +27,28 @@ public class PostService {
 	public void deletePostByCategory(Long categoryId) {
 		postRepository.deletePostByCategory(categoryId);
 	}
+
+	public List<PostVo> getAllPosts(Optional<Long> categoryNo) {
+	  return 	postRepository.getAllPosts(categoryNo);
+	}
+
+	public PostVo getPost(Optional<Long> postNo) {
+		return postRepository.getOnePost(postNo);
+	}
+
+	public PostVo getSmallPost(Long categoryNo) {
+		return postRepository.getSmallPost(categoryNo);
+	}
+
+	public List<PostVo> getAllPosts(Long categoryNo) {
+		  return 	postRepository.getAllPosts(categoryNo);
+	}
+
+	public PostVo getSmallPost(Optional<Long> categoryNo) {
+		return postRepository.getSmallPost(categoryNo);
+	}
+
+
+	
+	
 }

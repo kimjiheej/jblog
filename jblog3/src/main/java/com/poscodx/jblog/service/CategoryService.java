@@ -34,4 +34,8 @@ public class CategoryService {
 		categoryRepository.deleteCategory(categoryId);
 		
 	}
+
+public Long getFirstCategory(String id, String unregistered) {
+ return 	categoryRepository.getFirstCategory(id,unregistered);
+}
 }
