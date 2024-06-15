@@ -53,11 +53,16 @@ public class BlogController {
             // 카테고리 번호가 없는 경우의 처리 로직
         }
 
+        
+        
         // 세션에서 유저 정보를 가져와서 블로그 정보를 조회
         UserVo user = (UserVo) session.getAttribute("authUser");
         String userId = user.getId();
         BlogVo blog = blogService.getBlog(userId);
         model.addAttribute("blog", blog);
+        
+        List<CategoryVo> list = categoryService.getCategories(id);
+        model.addAttribute("list", list);
         
         return "blog/main";
     }
@@ -124,9 +129,13 @@ public class BlogController {
     @Auth
     @RequestMapping(value="/admin/category/delete/{categoryId}", method=RequestMethod.GET)
     public String deleteCategory(@PathVariable("id") String id, @PathVariable("categoryId") Long categoryId) {
+    	
         categoryService.deleteCategory(categoryId);
         postService.deletePostByCategory(categoryId);
         
         return "redirect:/" + id + "/admin/category"; // redirect 경로에서 id를 사용
     }
+    
+    
+    
 }

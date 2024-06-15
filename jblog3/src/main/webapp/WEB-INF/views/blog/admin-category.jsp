@@ -46,9 +46,8 @@
         <img src="${pageContext.request.contextPath}/assets/images/delete.jpg" alt="삭제">
     </a>
 </td>
-<!--  
-                            <td><a href="${pageContext.request.contextPath}/${authUser.id}/admin/category/delete/${category.id}">
-                            <img src="${pageContext.request.contextPath}/assets/images/delete.jpg" alt="삭제"></a></td> -->
+  
+                        
                         </tr>
                     </c:forEach>
                 </table>
