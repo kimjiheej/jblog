@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.poscodx.jblog.vo.CategoryVo;
+import com.poscodx.jblog.vo.PostVo;
 
 @Repository
 public class CategoryRepository {
@@ -27,4 +28,17 @@ private SqlSession sqlSession;
 		return sqlSession.selectList("category.findAll",id);
 	}
 
+	public void deleteCategory(Long categoryId) {
+		
+		sqlSession.delete("category.delete", categoryId);
+		
+	}
+	
+	public int makeBlog(String id, String title, String logo) {
+		return sqlSession.insert(
+				"blog.make",
+				Map.of("id", id, "title", title,  "logo", logo));
+	}
+
+	
 }

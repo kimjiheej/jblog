@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.poscodx.jblog.repository.CategoryRepository;
 import com.poscodx.jblog.vo.CategoryVo;
+import com.poscodx.jblog.vo.PostVo;
 
 @Service
 public class CategoryService {
@@ -22,14 +23,15 @@ public class CategoryService {
         categoryRepository.insertCategory(name, description, userId);
     }
     
-    
 	public List<CategoryVo> getCategories(String id) {
 		return categoryRepository.getAll(id);
+	}
+	
+	// 카테고리 삭제하기 
+  @Transactional
+	public void deleteCategory(Long categoryId) {
+		
+		categoryRepository.deleteCategory(categoryId);
 		
 	}
-
-
-	
-
-	
 }

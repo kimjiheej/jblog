@@ -2,4 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="post">
+
+   <insert id="insert" parameterType="postvo">
+        <![CDATA[
+        insert into post 
+        values (null, #{title }, #{contents },current_date(),#{categoryNo })
+        ]]>
+    </insert>
+    
+     <delete id="deletePostByCategory" parameterType="long">
+        <![CDATA[
+        delete from post where category_no=#{categoryId }
+        ]]>
+    </delete>
+    
+ 
 </mapper>
