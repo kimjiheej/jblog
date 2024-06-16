@@ -25,9 +25,9 @@
 		]]>  
 	</delete>
 	
-	  <select id="getFirstCategory" resultType="long" parameterType="map">
+	  <select id="getFirstCategory" resultType="long" parameterType="string">
 		<![CDATA[	
-		   select no from category where id=#{id } and name=#{un }
+		 SELECT MIN(no) FROM category WHERE id=#{id }
 		]]>  
 	</select>
 	

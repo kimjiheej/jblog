@@ -29,8 +29,9 @@
 				</div>
 				<ul class="blog-list">
 				 <c:forEach var="posting" items="${postList}">
-            <li><a href="<%= request.getContextPath() %>/admin/category/${categoryNo}">
-                ${posting.title}
+            <li><a href="<%= request.getContextPath() %>/${authUser.id }/${categoryNo}/${posting.no }">
+                ${posting.title} 
+                ${posting.reg_date }
             </a></li>
         </c:forEach>
 				</ul>
@@ -39,7 +40,7 @@
 
 		<div id="extra">
 			<div class="blog-logo">
-				<img src="${pageContext.request.contextPath}/assets/images/spring-logo.jpg">
+				<td><img src="${pageContext.request.contextPath}${blog.logo }"></td>
 			</div>
 		</div>
 
@@ -49,7 +50,7 @@
     <ul>
         <%-- 카테고리 리스트를 반복하며 각 카테고리의 이름을 링크로 출력 --%>
         <c:forEach var="category" items="${list}">
-            <li><a href="<%= request.getContextPath() %>/admin/category/${category.no}">
+            <li><a href="<%= request.getContextPath() %>/${authUser.id }/${category.no}">
                 ${category.name}
             </a></li>
         </c:forEach>

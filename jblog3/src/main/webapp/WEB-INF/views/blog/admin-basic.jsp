@@ -30,7 +30,7 @@
 	 		      	<table class="admin-config">
 			      		<tr>
 			      			<td class="t">블로그 제목</td>
-			      			<td><input type="text" size="40" name="title" value="${updatedvo.title}"></td>
+			      			<td><input type="text" size="40" name="title" value="${updatedvo.title }"></td>
 			      		</tr>
 			      		<tr>
 			      			<td class="t">로고이미지</td>

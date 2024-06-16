@@ -34,7 +34,11 @@ public class PostService {
 
 	public PostVo getPost(Optional<Long> postNo) {
 		return postRepository.getOnePost(postNo);
-	}
+		}
+	
+	public PostVo getPost(Long postNo) {
+		return postRepository.getOnePost(postNo);
+		}
 
 	public PostVo getSmallPost(Long categoryNo) {
 		return postRepository.getSmallPost(categoryNo);

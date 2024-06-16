@@ -40,9 +40,9 @@ private SqlSession sqlSession;
 				Map.of("id", id, "title", title,  "logo", logo));
 	}
 
-	public Long getFirstCategory(String id, String unregistered) {
+	public Long getFirstCategory(String id) {
 		
-		return sqlSession.selectOne("category.getFirstCategory", Map.of("id",id,"un",unregistered));
+		return sqlSession.selectOne("category.getFirstCategory", id);
 		
 	}
 

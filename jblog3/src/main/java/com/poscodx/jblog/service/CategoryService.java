@@ -48,7 +48,7 @@ public class CategoryService {
 		
 	}
 
-public Long getFirstCategory(String id, String unregistered) {
- return 	categoryRepository.getFirstCategory(id,unregistered);
+public Long getFirstCategory(String id) {
+ return 	categoryRepository.getFirstCategory(id);
 }
 }

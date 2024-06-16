@@ -45,6 +45,9 @@ private SqlSession sqlSession;
 		return sqlSession.selectOne("post.getOnePost",postNo);
 	}
 
+	public PostVo getOnePost(Long postNo) {
+		return sqlSession.selectOne("post.getOnePost",postNo);
+	}
 
 
 	public PostVo getSmallPost(Long no) {
