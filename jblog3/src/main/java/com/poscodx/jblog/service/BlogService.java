@@ -22,7 +22,13 @@ public class BlogService {
 
 
 	public BlogVo getBlog(String userId) {
-	 return   blogRepository.makeBlog(userId);
+	 return   blogRepository.getBlog(userId);
+	}
+
+	@Transactional
+	public void updateBlog(String id, String title, String logo) {
+		blogRepository.update(id, title, logo);
+		
 	}
  
 	 

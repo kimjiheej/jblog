@@ -50,7 +50,7 @@ public class UserController {
 		    System.out.println();
 		    // 회원가입 할때에 블로그를 하나 만들어준다 ! 
 		    
-		    blogService.make(id, id+"님의 블로그" , "loopy.png");
+		    blogService.make(id, id+"님의 블로그" , "/assets/upload-images/logo.jpg");
 		    
 		    // 기본 미분류 카테고리도 하나 설정해주어야 한다 
 		    

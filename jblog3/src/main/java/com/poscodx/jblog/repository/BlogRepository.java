@@ -23,8 +23,15 @@ private SqlSession sqlSession;
 				Map.of("id", id, "title", title,  "logo", logo));
 	}
 
-	public BlogVo makeBlog(String userId) { 
+	public BlogVo getBlog(String userId) { 
 		return sqlSession.selectOne("blog.findByUserId", userId);
+	}
+
+
+	public void update(String id, String title, String logo) {
+		
+	sqlSession.update("blog.updateBlog", Map.of("id", id, "title", title, "logo",logo));
+		
 	}
 
 	
