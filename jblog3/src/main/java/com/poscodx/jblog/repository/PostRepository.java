@@ -68,4 +68,10 @@ private SqlSession sqlSession;
 	    return sqlSession.selectOne("post.countPostsByCategory", no);
 	}
 
+
+
+	public void deletePosts(Long categoryId) {
+		 sqlSession.delete("post.deletePosts", categoryId);
+	}
+
 }

@@ -50,6 +50,14 @@ WHERE category_no =#{no }
 	 <select id="countPostsByCategory" resultType="long" parameterType="long">
         SELECT COUNT(*) FROM post WHERE category_no = #{categoryNo}
     </select>
+    
+
+    
+    <delete id="deletePosts" parameterType="long">
+      delete from post where category_no = #{categoryId }
+    </delete>
+    
+    
 	
 	
 

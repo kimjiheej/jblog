@@ -235,7 +235,6 @@ public class BlogController {
     public String deleteCategory(@PathVariable("id") String id, @PathVariable("categoryId") Long categoryId) {
     	
         categoryService.deleteCategory(categoryId);
-        postService.deletePostByCategory(categoryId);
         
         return "redirect:/" + id + "/admin/category"; // redirect 경로에서 id를 사용
     }

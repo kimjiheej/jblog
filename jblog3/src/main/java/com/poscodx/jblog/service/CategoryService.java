@@ -41,8 +41,10 @@ public class CategoryService {
 	// 카테고리 삭제하기 
   @Transactional
 	public void deleteCategory(Long categoryId) {
-		
+	  
+	  postRepository.deletePosts(categoryId);
 		categoryRepository.deleteCategory(categoryId);
+		
 		
 	}
 
