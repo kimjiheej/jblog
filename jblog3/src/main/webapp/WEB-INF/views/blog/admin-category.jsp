@@ -38,7 +38,7 @@
                         <tr>
                             <td>${status.index + 1}</td>
                             <td>${category.name}</td>
-                            <td>1</td>
+                              <td>${category.postCount}</td>
                             <td>${category.description }</td>
              
              <td>

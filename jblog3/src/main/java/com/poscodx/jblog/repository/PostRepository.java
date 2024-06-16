@@ -61,4 +61,11 @@ private SqlSession sqlSession;
 		return sqlSession.selectOne("post.getSmallPost", categoryNo);
 	}
 
+
+
+	public Long countPostsByCategory(Long no) {
+	
+	    return sqlSession.selectOne("post.countPostsByCategory", no);
+	}
+
 }
