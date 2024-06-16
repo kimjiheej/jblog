@@ -29,10 +29,12 @@
 				</div>
 				<ul class="blog-list">
 				 <c:forEach var="posting" items="${postList}">
-            <li><a href="<%= request.getContextPath() %>/${authUser.id }/${categoryNo}/${posting.no }">
-                ${posting.title} 
-                ${posting.reg_date }
-            </a></li>
+            <li>
+                    <a href="${pageContext.request.contextPath}/${authUser.id}/${categoryNo}/${posting.no}">
+                        ${posting.title}
+                    </a>
+                        ${posting.reg_date} <!-- 메서드 호출을 통한 접근 -->
+                </li>
         </c:forEach>
 				</ul>
 			</div>

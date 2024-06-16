@@ -46,86 +46,6 @@ public class BlogController {
 	private ServletContext servletContext;
   
     
-     
-//    
-//    @RequestMapping({"", "/{categoryNo}", "/{categoryNo}/{postNo}" })
-//    public String index(
-//        @PathVariable("id") String id,
-//        @PathVariable Optional<Long> categoryNo,
-//        @PathVariable Optional<Long> postNo, 
-//        HttpSession session, Model model
-//    ) {
-//      
-//    	   // 세션에서 유저 정보를 가져와서 블로그 정보를 조회
-//  	  UserVo user = (UserVo) session.getAttribute("authUser");
-//        String userId = user.getId();
-//        BlogVo blog = blogService.getBlog(userId);
-//        model.addAttribute("blog", blog);
-//        
-//        // 무조건 있어야 한다 
-//        List<CategoryVo> list = categoryService.getCategories(id);
-//        model.addAttribute("list", list);
-//        
-//        if (categoryNo.isPresent() && postNo.isPresent()) {
-//           
-//        	// 둘다 있으면 해당 postno 에 해당하는 글을 그냥 주기 
-//        	// 화면에 보이는 것 설정하기 
-//           
-//        	System.out.println("one");
-//           PostVo post = postService.getPost(postNo);
-//           List<PostVo> postList = postService.getAllPosts(categoryNo);
-//           
-//           System.out.println(post);
-//           
-//           
-//           model.addAttribute("categoryNo", categoryNo);
-//           model.addAttribute("firstPage", post);     
-//           model.addAttribute("postList", postList);
-//        	
-//        	
-//           
-//
-//        } else if (categoryNo.isPresent()) {
-//            
-//        	// 그냥 해당 카테고리 번호에 해당하는 모든 글을 다 가져오기 
-//       
-//        	System.out.println("two");
-//        	System.out.println("id:  " + id + "categoryNo : " + categoryNo);
-//        	 List<PostVo> postList = postService.getAllPosts(categoryNo);
-//             PostVo post = postService.getSmallPost(categoryNo);
-//        	 
-//             model.addAttribute("categoryNo", categoryNo);
-//             model.addAttribute("firstPage", post);
-//             model.addAttribute("postList", postList);
-//             
-//            
-//            // 해당 카테고리에 해당하는 모든 글을 불러준다 
-//           
-//        } else {
-//             // 그냥 처음에 들어오게 된다면 !
-//        	 // 해당 사람의 카테고리 no 중 미등록을 불러온다 (미등록) 
-//        	//  그리고 그 no 를 가져와서 모든 글을 다 불러온다. 
-//        	
-//        	// 이제 해당하는 미등록 number 를 가져왔고 
-//        	
-//        	System.out.println(id);
-//        	System.out.println("three");
-//            Long no = categoryService.getFirstCategory(id);
-//            System.out.println(no);
-//            // 미등록 category 에 해당하는 가장 첫번째 글 ! 
-//            
-//            
-//            // 그리고 그 number 를 가져와서 모든 글을 다 불러와준다 
-//            
-//            List<PostVo> posts = postService.getAllPosts(no);
-//            PostVo post = postService.getSmallPost(no);
-//            model.addAttribute("categoryNo", no);
-//            model.addAttribute("firstPage", post);
-//        	model.addAttribute("postList", posts);
-//        }
-//        return "blog/main";
-//    }
-//    
     
     @RequestMapping({"", "/{categoryNo}", "/{categoryNo}/{postNo}"})
     public String index(
@@ -153,7 +73,7 @@ public class BlogController {
             Long catNo = categoryNo.get();
             Long postNoValue = postNo.get();
 
-            System.out.println("one");
+          
             PostVo post = postService.getPost(postNoValue);
             List<PostVo> postList = postService.getAllPosts(catNo);
 
@@ -165,7 +85,7 @@ public class BlogController {
             // categoryNo만 존재할 때
             Long catNo = categoryNo.get();
 
-            System.out.println("two");
+       
             List<PostVo> postList = postService.getAllPosts(catNo);
             PostVo post = postService.getSmallPost(catNo);
 
@@ -175,11 +95,9 @@ public class BlogController {
 
         } else {
             // categoryNo와 postNo 둘 다 없을 때
-            System.out.println(id);
-            System.out.println("three");
-
+          
             Long no = categoryService.getFirstCategory(id);
-            System.out.println(no);
+          
 
             List<PostVo> posts = postService.getAllPosts(no);
             PostVo post = postService.getSmallPost(no);

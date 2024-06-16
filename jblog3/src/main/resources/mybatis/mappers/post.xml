@@ -30,7 +30,7 @@
 	 <select id="getOnePost" resultType="postvo" parameterType="long">
 		<![CDATA[	
 		
-		 select no, title, contents, date_format(reg_date, '%Y/%m/%d %H:%i:%s') as regDate, category_no from 
+		 select no, title, contents, date_format(reg_date, '%Y/%m/%d %H:%i:%s') as regDate , category_no from 
 		post 
 		where no=#{postNo }
 		]]>  
@@ -41,7 +41,7 @@
 	 <select id="getSmallPost" resultType="postvo" parameterType="long">
 		<![CDATA[	
 		
-		 SELECT MIN(no) AS min_no, title, contents, DATE_FORMAT(reg_date, '%Y/%m/%d %H:%i:%s') AS regDate, category_no
+		 SELECT MIN(no) AS min_no, title, contents, DATE_FORMAT(reg_date, '%Y/%m/%d %H:%i:%s') as regDate, category_no
 FROM post
 WHERE category_no =#{no }
 		]]>  
