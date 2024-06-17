@@ -22,7 +22,7 @@
 		select no, title, contents, date_format(reg_date, '%Y/%m/%d %H:%i:%s') as reg_date , category_no from 
 		post 
 		where category_no = #{no }
-		
+		order by reg_date desc
 		]]>  
 	</select>
 
@@ -33,6 +33,7 @@
 		 select no, title, contents, date_format(reg_date, '%Y/%m/%d %H:%i:%s') as reg_date  , category_no from 
 		post 
 		where no=#{postNo }
+		
 		]]>  
 	</select>
 	
@@ -40,9 +41,11 @@
 	 <select id="getSmallPost" resultType="postvo" parameterType="long">
 		<![CDATA[	
 		
-		 SELECT MIN(no) AS min_no, title, contents, DATE_FORMAT(reg_date, '%Y/%m/%d %H:%i:%s') as reg_date, category_no
+		 SELECT no, title, contents, DATE_FORMAT(reg_date, '%Y/%m/%d %H:%i:%s') as reg_date, category_no
 FROM post
 WHERE category_no =#{no }
+ order by reg_date desc 
+    limit 1
 		]]>  
 	</select>
 	
