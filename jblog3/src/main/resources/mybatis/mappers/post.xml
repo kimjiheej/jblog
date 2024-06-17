@@ -6,7 +6,7 @@
    <insert id="insert" parameterType="postvo">
         <![CDATA[
         insert into post 
-        values (null, #{title }, #{contents },current_date(),#{categoryNo })
+        values (null, #{title }, #{contents },current_timestamp(),#{categoryNo })
         ]]>
     </insert>
     
@@ -19,7 +19,7 @@
     <select id="getAllPosts" resultType="postvo" parameterType="long">
 		<![CDATA[	
 		
-		select no, title, contents, date_format(reg_date, '%Y/%m/%d %H:%i:%s') as regDate, category_no from 
+		select no, title, contents, date_format(reg_date, '%Y/%m/%d %H:%i:%s') as reg_date , category_no from 
 		post 
 		where category_no = #{no }
 		
@@ -30,18 +30,17 @@
 	 <select id="getOnePost" resultType="postvo" parameterType="long">
 		<![CDATA[	
 		
-		 select no, title, contents, date_format(reg_date, '%Y/%m/%d %H:%i:%s') as regDate , category_no from 
+		 select no, title, contents, date_format(reg_date, '%Y/%m/%d %H:%i:%s') as reg_date  , category_no from 
 		post 
 		where no=#{postNo }
 		]]>  
 	</select>
 	
 
-
 	 <select id="getSmallPost" resultType="postvo" parameterType="long">
 		<![CDATA[	
 		
-		 SELECT MIN(no) AS min_no, title, contents, DATE_FORMAT(reg_date, '%Y/%m/%d %H:%i:%s') as regDate, category_no
+		 SELECT MIN(no) AS min_no, title, contents, DATE_FORMAT(reg_date, '%Y/%m/%d %H:%i:%s') as reg_date, category_no
 FROM post
 WHERE category_no =#{no }
 		]]>  
@@ -57,9 +56,5 @@ WHERE category_no =#{no }
       delete from post where category_no = #{categoryId }
     </delete>
     
-    
-	
-	
-
  
 </mapper>

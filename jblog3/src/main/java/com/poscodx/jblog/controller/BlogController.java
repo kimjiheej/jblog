@@ -105,6 +105,8 @@ public class BlogController {
             model.addAttribute("categoryNo", no); // Long 타입으로 변환하여 모델에 추가
             model.addAttribute("firstPage", post);
             model.addAttribute("postList", posts);
+            
+            System.out.println(posts);
         }
 
         return "blog/main";
@@ -217,7 +219,7 @@ public class BlogController {
     	// 어떻게 하면 할 수 있을까 
     	
        postService.addPost(postvo);
-       return "redirect:/" + id + "/admin/category";
+       return "redirect:/" + id;
     	
     }
     

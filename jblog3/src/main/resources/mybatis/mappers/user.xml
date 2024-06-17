@@ -18,6 +18,4 @@
 		   and password=password(#{password })
 		]]>
 	</select>
-	
-	
 </mapper>

@@ -14,9 +14,15 @@
 		<div id="header">
 			<h1>${blog.title }</h1>
 			<ul>
-				<li><a href="${pageContext.request.contextPath}/user/login">로그인</a></li>
-				<li><a href="${pageContext.request.contextPath}/user/logout">로그아웃</a></li>
+			
+				
+		
+             
+                    <li><a href="${pageContext.request.contextPath}/user/login">로그인</a></li>
+             
+                  <li><a href="${pageContext.request.contextPath}/user/logout">로그아웃</a></li>
 				<li><a href="${pageContext.request.contextPath}/${authUser.id }/admin/basic">블로그 관리</a></li>
+                
 			</ul>
 		</div>
 	<div id="wrapper">
@@ -29,12 +35,12 @@
 				</div>
 				<ul class="blog-list">
 				 <c:forEach var="posting" items="${postList}">
-            <li>
-                    <a href="${pageContext.request.contextPath}/${authUser.id}/${categoryNo}/${posting.no}">
-                        ${posting.title}
-                    </a>
-                        ${posting.reg_date} <!-- 메서드 호출을 통한 접근 -->
-                </li>
+         <li>
+    <a href="${pageContext.request.contextPath}/${authUser.id}/${categoryNo}/${posting.no}">
+        ${posting.title}
+    </a>
+    <span style="margin-left: 10px;">${posting.reg_date}</span>
+</li>
         </c:forEach>
 				</ul>
 			</div>

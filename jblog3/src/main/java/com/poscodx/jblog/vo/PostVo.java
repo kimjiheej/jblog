@@ -13,6 +13,7 @@ public class PostVo {
 	public void setNo(Long no) {
 		this.no = no;
 	}
+	
 	public String getTitle() {
 		return title;
 	}
