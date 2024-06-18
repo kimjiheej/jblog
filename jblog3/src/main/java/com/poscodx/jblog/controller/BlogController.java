@@ -100,6 +100,8 @@ public class BlogController {
           
 
             List<PostVo> posts = postService.getAllPosts(no);
+            
+            // 가장 최신의 글 가져오기 
             PostVo post = postService.getSmallPost(no);
 
             model.addAttribute("categoryNo", no); // Long 타입으로 변환하여 모델에 추가

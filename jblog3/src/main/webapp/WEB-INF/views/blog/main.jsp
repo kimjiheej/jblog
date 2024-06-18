@@ -25,11 +25,7 @@
 				<li><a href="${pageContext.request.contextPath}/${authUser.id }/admin/basic">블로그 관리</a></li>
                 </c:otherwise>
             </c:choose>
-			
-				
-		
-         
-                
+
 			</ul>
 		</div>
 	<div id="wrapper">
@@ -75,7 +71,7 @@
 		
 		<div id="footer">
 			<p>
-				<strong>Spring 이야기</strong> is powered by JBlog (c)2016
+				<strong>${updatedvo.title }</strong> is powered by JBlog (c)2016
 			</p>
 		</div>
 	</div>
