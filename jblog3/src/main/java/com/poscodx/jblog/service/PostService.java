@@ -28,13 +28,7 @@ public class PostService {
 		postRepository.deletePostByCategory(categoryId);
 	}
 
-	public List<PostVo> getAllPosts(Optional<Long> categoryNo) {
-	  return 	postRepository.getAllPosts(categoryNo);
-	}
 
-	public PostVo getPost(Optional<Long> postNo) {
-		return postRepository.getOnePost(postNo);
-		}
 	
 	public PostVo getPost(Long postNo) {
 		return postRepository.getOnePost(postNo);
@@ -48,7 +42,5 @@ public class PostService {
 		  return 	postRepository.getAllPosts(categoryNo);
 	}
 
-	public PostVo getSmallPost(Optional<Long> categoryNo) {
-		return postRepository.getSmallPost(categoryNo);
-	}
+	
 }
