@@ -15,7 +15,7 @@
 		  select no, name, description, date_format(reg_date, '%Y/%m/%d %H:%i:%s') as regDate, id
 		    from category 
 		    where id=#{id }
-		order by reg_date desc
+		order by reg_date asc
 		]]>  
 	</select>
 	

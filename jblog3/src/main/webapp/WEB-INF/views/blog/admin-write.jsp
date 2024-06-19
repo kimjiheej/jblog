@@ -53,7 +53,7 @@
         </div>
         <div id="footer">
             <p>
-                <strong>${updatedvo.title }</strong> is powered by JBlog (c)2016
+                <strong>${blog.title }</strong> is powered by JBlog (c)2016
             </p>
         </div>
     </div>

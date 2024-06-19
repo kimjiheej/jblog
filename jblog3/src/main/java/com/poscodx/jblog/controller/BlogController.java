@@ -50,73 +50,77 @@ public class BlogController {
 	private ServletContext servletContext;
 
 
+	   @RequestMapping({"", "/{categoryNo}", "/{categoryNo}/{postNo}"})
+	    public String index(
+	            @PathVariable("id") String id,
+	            @PathVariable Optional<Long> categoryNo,
+	            @PathVariable Optional<Long> postNo,
+	            Model model, HttpSession session
+	            ) {
 
+		    
+		    UserVo authUser = (UserVo) session.getAttribute("authUser");
 
-	@RequestMapping({"", "/{categoryNo}", "/{categoryNo}/{postNo}"})
-	public String index(
-			@PathVariable("id") String id,
-			@PathVariable Optional<Long> categoryNo,
-			@PathVariable Optional<Long> postNo,
-			HttpSession session, Model model
-			) {
+		    boolean check = false;
 
-		BlogVo blog = blogService.getBlog(id);
-		model.addAttribute("blog", blog);
-
-		// 무조건 있어야 한다
-		List<CategoryVo> list = categoryService.getCategories(id);
-		model.addAttribute("list", list);
-
-		if (categoryNo.isPresent() && postNo.isPresent()) {
-			// categoryNo와 postNo가 모두 존재할 때
-			Long catNo = categoryNo.get();
-			Long postNoValue = postNo.get();
-
-
-			PostVo post = postService.getPost(postNoValue);
-			List<PostVo> postList = postService.getAllPosts(catNo);
-
-			model.addAttribute("categoryNo", catNo); // Long 타입으로 변환하여 모델에 추가
-			model.addAttribute("firstPage", post);
-			model.addAttribute("postList", postList);
-
-		} else if (categoryNo.isPresent()) {
-			// categoryNo만 존재할 때
-			Long catNo = categoryNo.get();
-
-
-			List<PostVo> postList = postService.getAllPosts(catNo);
-			PostVo post = postService.getSmallPost(catNo);
-
-			model.addAttribute("categoryNo", catNo); // Long 타입으로 변환하여 모델에 추가
-			model.addAttribute("firstPage", post);
-			model.addAttribute("postList", postList);
-
-		} else {
-			
-			 // 해당 유저의 '미분류' 카테고리의 no 를 찾아온다. 
-			//  no 를 찾아온다면 해당 카테고리 no 에 해당하는 모든 포스트를 가져온다 
-			//  첫번째 페이지는 그 포스트중 가장 최신의 글을 가져오면 된다. 
-			
-			
-			 Long undefinedCategoryNo = categoryService.getUnDefinedCategory(id);
-			 
-			 List<PostVo> mainPost = postService.getAllPosts(undefinedCategoryNo);
-			 
-			   PostVo latestPost = mainPost.stream()
-                       .max(Comparator.comparing(PostVo::getReg_date))
-                       .orElse(null);
-			
-			 
-		  
-		        // 모델에 필요한 속성들을 추가함
-		        model.addAttribute("firstPage", latestPost);
-		        model.addAttribute("categoryNo", undefinedCategoryNo);
-		        model.addAttribute("postList", mainPost);
+		    if(authUser != null && id.equals(authUser.getId())) {
+		        check = true;
 		    }
+	        // 블로그 정보 가져오기
+	        BlogVo blog = blogService.getBlog(id);
+	        model.addAttribute("blog", blog);
+	        model.addAttribute("blogId", id);  // 블로그 ID를 모델에 추가
+	        model.addAttribute("check" , check);
 
-		    return "blog/main";
-	}
+	        // 무조건 있어야 하는 카테고리 리스트 가져오기
+	        List<CategoryVo> list = categoryService.getCategories(id);
+	        model.addAttribute("list", list);
+
+	        if (categoryNo.isPresent() && postNo.isPresent()) {
+	            // categoryNo와 postNo가 모두 존재할 때
+	            Long catNo = categoryNo.get();
+	            Long postNoValue = postNo.get();
+
+	            PostVo post = postService.getPost(postNoValue);
+	            List<PostVo> postList = postService.getAllPosts(catNo);
+
+	            model.addAttribute("blogId", id);
+	            model.addAttribute("categoryNo", catNo);
+	            model.addAttribute("firstPage", post);
+	            model.addAttribute("postList", postList);
+
+	        } else if (categoryNo.isPresent()) {
+	            // categoryNo만 존재할 때
+	            Long catNo = categoryNo.get();
+
+	            List<PostVo> postList = postService.getAllPosts(catNo);
+	            PostVo post = postService.getSmallPost(catNo);
+
+	            model.addAttribute("blogId", id);
+	            model.addAttribute("categoryNo", catNo);
+	            model.addAttribute("firstPage", post);
+	            model.addAttribute("postList", postList);
+
+	        } else {
+	            // 카테고리나 포스트 번호가 없는 경우
+	            // '미분류' 카테고리의 번호를 가져와 해당 카테고리의 모든 포스트를 가져옴
+	            Long undefinedCategoryNo = categoryService.getUnDefinedCategory(id);
+
+	            List<PostVo> mainPost = postService.getAllPosts(undefinedCategoryNo);
+	            PostVo latestPost = mainPost.stream()
+	                                        .max(Comparator.comparing(PostVo::getReg_date))
+	                                        .orElse(null);
+                
+	            model.addAttribute("blogId", id);
+	            model.addAttribute("firstPage", latestPost);
+	            model.addAttribute("categoryNo", undefinedCategoryNo);
+	            model.addAttribute("postList", mainPost);
+	        }
+
+	        return "blog/main";
+	    }
+	
+	
 
 	/**
 	 * 블로그 기본 설정 페이지 접근
@@ -132,6 +136,8 @@ public class BlogController {
 			BlogVo vo = blogService.getBlog(id);
 			System.out.println("정답이 뭐냐" + vo);
 			model.addAttribute("updatedvo", vo);
+			   BlogVo blog = blogService.getBlog(id);
+		        model.addAttribute("blog", blog);
 			return "blog/admin-basic";
 		}
 		else {
@@ -171,6 +177,8 @@ public class BlogController {
 
 			//  model.addAttribute("updatedvo", vo);
 			servletContext.setAttribute("updatedvo", vo);
+			   BlogVo blog = blogService.getBlog(id);
+		        model.addAttribute("blog", blog);
 			return "redirect:/" + id + "/admin/basic";
 		} else {
 			return "redirect:/";
@@ -194,6 +202,8 @@ public class BlogController {
 
 			List<CategoryVo> list = categoryService.getCategories(id);
 			model.addAttribute("list", list);
+			   BlogVo blog = blogService.getBlog(id);
+		        model.addAttribute("blog", blog);
 			return "blog/admin-category";
 		} else {
 			return "redirect:/";
@@ -233,6 +243,8 @@ public class BlogController {
 
 			List<CategoryVo> list = categoryService.getCategories(id);
 			model.addAttribute("list", list);
+			   BlogVo blog = blogService.getBlog(id);
+		        model.addAttribute("blog", blog);
 
 			return "blog/admin-write";
 		} else {
