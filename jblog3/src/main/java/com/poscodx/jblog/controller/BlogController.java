@@ -59,14 +59,8 @@ public class BlogController {
 			@PathVariable Optional<Long> postNo,
 			HttpSession session, Model model
 			) {
-		// 세션에서 유저 정보를 가져와서 블로그 정보를 조회
-		UserVo user = (UserVo) session.getAttribute("authUser");
-		if (user == null) {
-			throw new RuntimeException("User not found in session");
-		}
 
-		String userId = user.getId();
-		BlogVo blog = blogService.getBlog(userId);
+		BlogVo blog = blogService.getBlog(id);
 		model.addAttribute("blog", blog);
 
 		// 무조건 있어야 한다
