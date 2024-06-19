@@ -13,10 +13,12 @@
 	<div class="center-content">
 		<h1 class="logo">JBlog</h1>
 		<ul class="menu">
-			<li><a href="${pageContext.request.contextPath}/user/login">로그인</a></li>
-			<li><a href="${pageContext.request.contextPath}/user/join">회원가입</a></li>
-			<li><a href="${pageContext.request.contextPath}/user/logout">로그아웃</a></li>
-			<li><a href="${pageContext.request.contextPath}/${authUser.id }">내블로그</a></li>
+		
+             
+                    <li><a href="${pageContext.request.contextPath}/user/login">로그인</a></li>
+                    <li><a href="${pageContext.request.contextPath}/user/logout">로그아웃</a></li>
+                   
+                
 		</ul>
 		<p class="welcome-message">
 			<span> 감사합니다. 회원 가입 및 블로그가 성공적으로 만들어 졌습니다.</span>

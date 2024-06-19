@@ -31,6 +31,13 @@
 		]]>  
 	</select>
 	
+	  	  <select id="getUnDefinedCategory" resultType="long" parameterType="string">
+		<![CDATA[	
+		 SELECT no FROM category WHERE id=#{id } and name='미분류'
+		]]>  
+	</select>
+	
+	
 	
 	
 	

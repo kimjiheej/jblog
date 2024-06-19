@@ -1,7 +1,11 @@
 package com.poscodx.jblog.controller;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
@@ -95,25 +99,29 @@ public class BlogController {
 			model.addAttribute("postList", postList);
 
 		} else {
-			// categoryNo와 postNo 둘 다 없을 때
+			
+			 // 해당 유저의 '미분류' 카테고리의 no 를 찾아온다. 
+			//  no 를 찾아온다면 해당 카테고리 no 에 해당하는 모든 포스트를 가져온다 
+			//  첫번째 페이지는 그 포스트중 가장 최신의 글을 가져오면 된다. 
+			
+			
+			 Long undefinedCategoryNo = categoryService.getUnDefinedCategory(id);
+			 
+			 List<PostVo> mainPost = postService.getAllPosts(undefinedCategoryNo);
+			 
+			   PostVo latestPost = mainPost.stream()
+                       .max(Comparator.comparing(PostVo::getReg_date))
+                       .orElse(null);
+			
+			 
+		  
+		        // 모델에 필요한 속성들을 추가함
+		        model.addAttribute("firstPage", latestPost);
+		        model.addAttribute("categoryNo", undefinedCategoryNo);
+		        model.addAttribute("postList", mainPost);
+		    }
 
-			// 여기서 가장 최근에 만들어진 글을 보이게 해야한다 
-			Long no = categoryService.getFirstCategory(id);
-
-
-			List<PostVo> posts = postService.getAllPosts(no);
-
-			// 가장 최신의 글 가져오기 
-			PostVo post = postService.getSmallPost(no);
-
-			model.addAttribute("categoryNo", no); // Long 타입으로 변환하여 모델에 추가
-			model.addAttribute("firstPage", post);
-			model.addAttribute("postList", posts);
-
-		
-		}
-
-		return "blog/main";
+		    return "blog/main";
 	}
 
 	/**

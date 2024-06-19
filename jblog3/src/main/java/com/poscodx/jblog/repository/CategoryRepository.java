@@ -46,6 +46,11 @@ private SqlSession sqlSession;
 		
 	}
 
+	public Long getUnDefinedCategory(String id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("category.getUnDefinedCategory", id);
+	}
+
 
 
 	

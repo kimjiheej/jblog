@@ -58,7 +58,6 @@ public class UserController {
 		    
 		   categoryService.insertCategory("미분류","카테고리를 지정하지 않은 경우",id);
 		   
-		    
 	        return "redirect:/user/joinsuccess";
 	    }
 

@@ -28,6 +28,7 @@ public class CategoryService {
     }
     
 
+    // 전체 카테고리 가져오는 것이다. 
 	   public List<CategoryVo> getCategories(String id) {
 	        List<CategoryVo> categories = categoryRepository.getAll(id);
 
@@ -50,6 +51,11 @@ public class CategoryService {
 
 public Long getFirstCategory(String id) {
  return 	categoryRepository.getFirstCategory(id);
+}
+
+
+public Long getUnDefinedCategory(String id) {
+	return categoryRepository.getUnDefinedCategory(id);
 }
 
 
