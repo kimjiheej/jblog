@@ -97,6 +97,7 @@ public class BlogController {
 		} else {
 			// categoryNo와 postNo 둘 다 없을 때
 
+			// 여기서 가장 최근에 만들어진 글을 보이게 해야한다 
 			Long no = categoryService.getFirstCategory(id);
 
 
