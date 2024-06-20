@@ -20,9 +20,9 @@
 					</c:when>
 					<c:otherwise>
 						<li><a href="${pageContext.request.contextPath}/user/logout">로그아웃</a></li>
-						  <c:if test="${authUser.id == blogId}">
+					
                 <li><a href="${pageContext.request.contextPath}/${authUser.id}/admin/basic">블로그 관리</a></li>
-            </c:if>
+            
 						
 					</c:otherwise>
 				</c:choose>
