@@ -12,20 +12,24 @@
 <body>
 	<div id="container">
 		<div id="header">
-			<h1>${updatedvo.title }</h1>
-			<ul>
-			   <c:choose>
-                <c:when test="${empty authUser}">
-                 	<li><a href="${pageContext.request.contextPath}/user/login">로그인</a></li>
-                </c:when>
-                <c:otherwise>
-                   
-				<li><a href="${pageContext.request.contextPath}/user/logout">로그아웃</a></li>
-				<li><a href="${pageContext.request.contextPath}/${authUser.id }/admin/basic">블로그 관리</a></li>
-                </c:otherwise>
-            </c:choose>
-			
+			<h1>${blog.title }</h1>
+	  <ul>
+				<c:choose>
+					<c:when test='${empty authUser }'>
+						<li><a href="${pageContext.request.contextPath}/user/login">로그인</a></li>
+					</c:when>
+					<c:otherwise>
+						<li><a href="${pageContext.request.contextPath}/user/logout">로그아웃</a></li>
+						  <c:if test="${authUser.id == blogId}">
+                <li><a href="${pageContext.request.contextPath}/${authUser.id}/admin/basic">블로그 관리</a></li>
+            </c:if>
+						
+					</c:otherwise>
+				</c:choose>
 			</ul>
+			
+		
+
 		</div>
 		<div id="wrapper">
 			<div id="content" class="full-screen">
@@ -38,11 +42,11 @@
 	 		      	<table class="admin-config">
 			      		<tr>
 			      			<td class="t">블로그 제목</td>
-			      			<td><input type="text" size="40" name="title" value="${updatedvo.title }"></td>
+			      			<td><input type="text" size="40" name="title" value="${blog.title }"></td>
 			      		</tr>
 			      		<tr>
 			      			<td class="t">로고이미지</td>
-			      			<td><img src="${pageContext.request.contextPath}${updatedvo.logo }"></td>
+			      			<td><img src="${pageContext.request.contextPath}${blog.logo }"></td>
 			      		</tr>      		
 			      		<tr>
 			      			<td class="t">&nbsp;</td>

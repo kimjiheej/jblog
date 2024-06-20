@@ -61,16 +61,18 @@ public class BlogController {
 		    
 		    UserVo authUser = (UserVo) session.getAttribute("authUser");
 
-		    boolean check = false;
+		//    boolean check = false;
 
-		    if(authUser != null && id.equals(authUser.getId())) {
-		        check = true;
-		    }
+//		    if(authUser != null && id.equals(authUser.getId())) {
+//		        check = true;
+//		    }
 	        // 블로그 정보 가져오기
 	        BlogVo blog = blogService.getBlog(id);
 	        model.addAttribute("blog", blog);
 	        model.addAttribute("blogId", id);  // 블로그 ID를 모델에 추가
-	        model.addAttribute("check" , check);
+	        
+	 
+	    //    model.addAttribute("check" , check);
 
 	        // 무조건 있어야 하는 카테고리 리스트 가져오기
 	        List<CategoryVo> list = categoryService.getCategories(id);
@@ -133,9 +135,7 @@ public class BlogController {
 		UserVo user = (UserVo) session.getAttribute("authUser");
 		if(id.equals(user.getId())) {
 
-			BlogVo vo = blogService.getBlog(id);
-			System.out.println("정답이 뭐냐" + vo);
-			model.addAttribute("updatedvo", vo);
+			
 			   BlogVo blog = blogService.getBlog(id);
 		        model.addAttribute("blog", blog);
 			return "blog/admin-basic";
