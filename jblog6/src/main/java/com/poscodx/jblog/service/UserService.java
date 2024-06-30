@@ -23,7 +23,7 @@ public class UserService {
 	
 	 
 	 @Autowired
-	private PasswordEncoder passwordEncoder;
+		private PasswordEncoder passwordEncoder;
 
 	 
 	@Transactional
