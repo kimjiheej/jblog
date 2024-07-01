@@ -52,7 +52,7 @@ public class UserController {
 		    
 		   blogService.make(id, id+"님의 블로그" , "/assets/images/spring-logo.jpg");
 		    // 기본 미분류 카테고리도 하나 설정해주어야 한다 
-		    
+		   
 		   categoryService.insertCategory("미분류","카테고리를 지정하지 않은 경우",id);
 		   
 	        return "redirect:/user/joinsuccess";
