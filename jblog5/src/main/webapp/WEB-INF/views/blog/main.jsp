@@ -12,21 +12,29 @@
 </head>
 <body>
     <div id="container">
-      <div id="header">
-    <h1>${blog.title}</h1>
-    <ul>
-        <sec:authorize access="isAnonymous()">
-            <!-- 로그인이 되어 있지 않은 경우 -->
-            <li><a href="${pageContext.request.contextPath}/user/login">로그인</a></li>
-        </sec:authorize>
-        <sec:authorize access="isAuthenticated()">
-            <!-- 로그인이 되어 있는 경우 -->
-            <li><a href="${pageContext.request.contextPath}/user/logout">로그아웃</a></li>
-            <sec:authentication property="principal" var="user"/>
-            <li><a href="${pageContext.request.contextPath}/${user.id}/admin/basic">블로그 관리</a></li>
-        </sec:authorize>
-    </ul>
-</div>
+          <div id="header">
+            <h1>${blog.title}</h1>
+            <ul>
+                <sec:authorize access="isAnonymous()">
+                    <!-- 로그인이 되어 있지 않은 경우 -->
+                    <li><a href="${pageContext.request.contextPath}/user/login">로그인</a></li>
+                </sec:authorize>
+                <sec:authorize access="isAuthenticated()">
+                    <!-- 로그인이 되어 있는 경우 -->
+                    <sec:authentication property="principal" var="user"/>
+                    
+                    <c:choose>
+                        <c:when test="${user.id eq blogId}">
+                            <li><a href="${pageContext.request.contextPath}/user/logout">로그아웃</a></li>
+                            <li><a href="${pageContext.request.contextPath}/${user.id}/admin/basic">블로그 관리</a></li>
+                        </c:when>
+                        <c:otherwise>
+                            <li><a href="${pageContext.request.contextPath}/user/logout">로그아웃</a></li>
+                        </c:otherwise>
+                    </c:choose>
+                </sec:authorize>
+            </ul>
+        </div>
         <div id="wrapper">
             <div id="content">
                 <div class="blog-content">
