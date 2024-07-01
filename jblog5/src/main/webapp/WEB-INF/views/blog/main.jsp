@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/jblog.css">
 </head>
 <body>
-    <div id="container">
+   <div id="container">
           <div id="header">
             <h1>${blog.title}</h1>
             <ul>
