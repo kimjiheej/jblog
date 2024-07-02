@@ -10,7 +10,7 @@
 
     <groupId>com.poscodx</groupId>
     <version>0.0.1-SNAPSHOT</version>
-    <artifactId>jblog6</artifactId>
+    <artifactId>jblog7</artifactId>
     <packaging>war</packaging>
   
   <properties>
@@ -110,7 +110,7 @@
 	</dependencies>
 	
 	<build>
-		<finalName>jblog6</finalName>
+		<finalName>jblog7</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
